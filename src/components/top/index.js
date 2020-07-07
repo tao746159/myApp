@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
-import { SearchBar } from '@ant-design/react-native';
+import Iconfonts from 'react-native-vector-icons/Ionicons'
 
 import SearchList from '../../pages/searchList'
 export default class SearchBarDemo extends React.Component {
@@ -22,10 +22,10 @@ export default class SearchBarDemo extends React.Component {
         <TextInput
           value={this.state.value}
           placeholder="搜索"
-          style={{ height: 40, backgroundColor: '#ffffff', borderColor: '#dddddd', borderWidth: 1, borderRadius: 5 }}
-
+          style={{ height: 40, backgroundColor: '#ffffff', borderColor: '#dddddd', borderWidth: 1, borderRadius: 10 }}
           onChangeText={this.onChange}
         />
+        <Iconfonts name="search" size={20} style={{position: 'absolute', right: 10, top: 10}} />
       </View>
     );
   }
