@@ -4,6 +4,7 @@ import {
 } from 'react-native'
 
 import Iconfonts from 'react-native-vector-icons/Ionicons'
+import { Button } from '@ant-design/react-native'
 
 const My = () => {
   return (
@@ -50,7 +51,9 @@ const My = () => {
             <Iconfonts name="chevron-forward-outline" size={24} style={{ marginRight: 20 }} />
           </View>
         </TouchableHighlight>
+        <Button style={{marginTop: 60, marginLeft: 20, marginRight: 20}} type="warning">退出登录</Button>
       </View>
+      
     </View>
   )
 }
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
   content: {
     borderRadius: 20,
     height: '100%',
-    backgroundColor: '#ddd',
+    backgroundColor: '#f8f8f8',
     position: 'relative',
     top: -10,
     marginTop: 20
