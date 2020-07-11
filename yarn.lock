@@ -1449,23 +1449,7 @@
   integrity sha1-c8HqJYL4FHNeSv3Bz29eOveNtgo=
   dependencies:
     eslint-visitor-keys "^1.1.0"
-
-"@unimodules/core@^5.3.0":
-  version "5.3.0"
-  resolved "https://registry.npm.taobao.org/@unimodules/core/download/@unimodules/core-5.3.0.tgz#c425e59b1f9c1e2c91b235b6192e5f622a47d833"
-  integrity sha1-xCXlmx+cHiyRsjW2GS5fYipH2DM=
-  dependencies:
-    compare-versions "^3.4.0"
-
-"@unimodules/react-native-adapter@^5.4.0":
-  version "5.4.0"
-  resolved "https://registry.npm.taobao.org/@unimodules/react-native-adapter/download/@unimodules/react-native-adapter-5.4.0.tgz#6639a2b6df74806bc886933c99bb18408e54f7f0"
-  integrity sha1-Zjmitt90gGvIhpM8mbsYQI5U9/A=
-  dependencies:
-    invariant "^2.2.4"
-    lodash "^4.5.0"
-    prop-types "^15.6.1"
-
+    
 abab@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/abab/download/abab-2.0.3.tgz#623e2075e02eb2d3f2475e49f99c91846467907a"

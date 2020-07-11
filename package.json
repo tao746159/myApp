@@ -17,8 +17,6 @@
     "@react-navigation/bottom-tabs": "^5.6.1",
     "@react-navigation/native": "^5.6.1",
     "@react-navigation/stack": "^5.6.2",
-    "@unimodules/core": "^5.3.0",
-    "@unimodules/react-native-adapter": "^5.4.0",
     "babel-plugin-import": "^1.13.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "expo-asset": "^8.1.7",

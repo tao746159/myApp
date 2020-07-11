@@ -15,6 +15,9 @@ const Project = () => {
           <View style={{ width: '30%' }}>
             <Image source={require('../../images/remmend/remmend_01.jpg')} style={styles.image} />
           </View>
+          <View>
+            <Text></Text>
+          </View>
         </View>
       </ScrollView>
     </View>
