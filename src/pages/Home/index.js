@@ -10,11 +10,6 @@ import Navigate from './components/Navigate'
 import Special from './components/Special'
 import Recommend from './components/Recommend'
 const Home = (props) => {
-  const onHorizontalSelectedIndexChange = (index) => {
-    /* tslint:disable: no-console */
-    console.log('horizontal change to', index);
-  }
-
   return (
     <View style={styles.Home}>
       <Top props={props} title="首页"></Top>
@@ -22,7 +17,7 @@ const Home = (props) => {
         <RCarousel></RCarousel>
         <Navigate props={props}></Navigate>
         <Special></Special>
-        <Recommend></Recommend>
+        <Recommend {...props}></Recommend>
       </ScrollView>
     </View>
   )

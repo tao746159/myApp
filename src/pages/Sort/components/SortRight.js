@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native'
 
 import Iconfonts from 'react-native-vector-icons/Ionicons'
 
 const SortRight = (props) => {
+  const { navigate } = props.props.navigation;
   return (
     <View>
       {
@@ -11,7 +12,7 @@ const SortRight = (props) => {
           return <View key={index} style={{ marginTop: 10, marginLeft: 10, marginRight: 10, marginBottom: 30 }}>
             <View style={{ marginTop: 10, flexDirection: 'row', flexWrap: 'wrap' }}>
               <View style={{ width: '30%' }}>
-                <Image source={{ uri: item.src }} style={{ width: 60, height: 60 }} />
+                <TouchableHighlight underlayColor="" onPress={() => { navigate('Defail', { id: item.id }) }}><Image source={{ uri: item.src }} style={{ width: 60, height: 60 }} /></TouchableHighlight>
               </View>
               <View style={{ width: '70%' }}>
                 <Text numberOfLines={1}>{item.title}</Text>

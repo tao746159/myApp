@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 
-const Recommend = () => {
-  let [list, setList] = useState([])
 
+const Recommend = (props) => {
+  let [list, setList] = useState([])
   const handleGetList = () => {
     fetch('http://www.leother.cool:3002/api/homelist')
       .then((response) => response.json())
@@ -15,7 +15,7 @@ const Recommend = () => {
   useEffect(() => {
     handleGetList()
   }, [])
-
+  const { navigate } = props.navigation;
   return (
     <View style={{ marginBottom: 30 }}>
       <View style={styles.recommendTop}>
@@ -28,18 +28,20 @@ const Recommend = () => {
       <View style={styles.content}>
         {
           list.map((item, index) => {
-            return <View key={index} style={{ width: '49%', marginTop: 20 }}>
+            return <TouchableHighlight underlayColor="" key={index} onPress={() => { navigate('Defail', { id: item.id }) }} key={index} style={{ width: '49%', marginTop: 20 }}>
               <View>
-                <Image source={{ uri: item.src }} style={{ maxWidth: '100%', height: 120 }} />
-              </View>
-              <View>
-                <Text numberOfLines={1} style={styles.title}>{item.title}</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Text style={styles.pice}>{item.pice}</Text>
-                  <Text style={{ marginLeft: 5, color: '#dddddd' }}>{item.paying}</Text>
+                <View>
+                  <Image source={{ uri: item.src }} style={{ maxWidth: '100%', height: 120 }} />
+                </View>
+                <View>
+                  <Text numberOfLines={1} style={styles.title}>{item.title}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Text style={styles.pice}>{item.pice}</Text>
+                    <Text style={{ marginLeft: 5, color: '#dddddd' }}>{item.paying}</Text>
+                  </View>
                 </View>
               </View>
-            </View>
+            </TouchableHighlight>
           })
         }
 

@@ -30,35 +30,58 @@ const sortList = [
   }
 ]
 
-const Sort = () => {
-  let [list, setList] = useState([])
-  let [active, setActive] = useState('remen')
-  useEffect(() => {
+class Sort extends React.Component {
+  constructor() {
+    super(...arguments)
+    this.state = {
+      list: [],
+      arrList: [],
+      active: 'remen'
+    }
+  }
+  componentDidMount() {
     fetch('http://www.leother.cool:3002/api/homelist')
       .then((response) => response.json())
-      .then((json) => setList(json.list))
-  }, [])
+      .then((json) => this.setState({ list: json.list, arrList: json.list }))
+  }
 
-  return (
-    <View style={styles.top}>
-      <View style={styles.left}>
-        <View>
-          
-          {
-            sortList.map((item, index) => {
-              return <View key={index} style={styles.item}>
-                <Text style={item.name === active ? styles.active : ''} onPress={()=>{setActive(item.name)}}>{item.text}</Text>
-              </View>
-            })
-          }
+  handleTabActive = (name) => {
+    if (name === 'remen') {
+      return this.setState({ list: this.state.arrList, active: name })
+    }
+    this.setState({
+      active: name
+    }, () => {
+      this.setState({ list: this.state.arrList })
+      let arr = this.state.arrList.filter(item => {
+        return item.sort === name
+      })
+      this.setState({ list: arr })
+    })
+  }
+
+  render() {
+    return (
+      <View style={styles.top}>
+        <View style={styles.left}>
+          <View>
+
+            {
+              sortList.map((item, index) => {
+                return <View key={index} style={styles.item}>
+                  <Text style={item.name === this.state.active ? styles.active : ''} onPress={() => { this.handleTabActive(item.name) }}>{item.text}</Text>
+                </View>
+              })
+            }
+          </View>
         </View>
+        <ScrollView style={styles.right}>
+          <Image source={{ uri: 'http://i2.tiimg.com/722699/ababe0ac9cbe426b.jpg' }} style={{ width: '100%', height: 100 }} />
+          <SortRight list={this.state.list} props={this.props}></SortRight>
+        </ScrollView>
       </View>
-      <ScrollView style={styles.right}>
-        <Image source={{uri: 'http://i2.tiimg.com/722699/ababe0ac9cbe426b.jpg'}} style={{width: '100%', height: 100}} />
-        <SortRight list={list}></SortRight>
-      </ScrollView>
-    </View>
-  )
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -66,7 +89,7 @@ const styles = StyleSheet.create({
   left: { width: '25%', height: '100%', borderRightWidth: 1, borderRightColor: '#dddddd', alignItems: 'center' },
   right: { width: '75%', padding: 10 },
   item: { width: '100%', height: 60, justifyContent: 'center', borderBottomColor: '#dddddd', borderBottomWidth: 1 },
-  active: {color: '#1bbf80'}
+  active: { color: '#1bbf80' }
 })
 
 export default Sort
