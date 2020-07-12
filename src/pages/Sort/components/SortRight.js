@@ -1,9 +1,10 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native'
-
+import {ActivityIndicator} from '@ant-design/react-native'
 import Iconfonts from 'react-native-vector-icons/Ionicons'
 
 const SortRight = (props) => {
+
   const { navigate } = props.props.navigation;
   return (
     <View>
@@ -22,6 +23,12 @@ const SortRight = (props) => {
                 </View>
               </View>
             </View>
+            <View><ActivityIndicator
+          animating={props.show}
+          toast
+          size="large"
+          text="Loading..."
+        /></View>
           </View>
         })
       }

@@ -15,6 +15,12 @@ import Login from './src/pages/Login/Login'
 import Register from './src/pages/Login/Register'
 import Defail from './src/pages/defail'
 import SearchList from './src/pages/searchList'
+import Information from './src/pages/My/components/information'
+import Avatar from './src/pages/My/components/information/avatar'
+import Age from './src/pages/My/components/information/age'
+import Phone from './src/pages/My/components/information/phone'
+import Nickname from './src/pages/My/components/information/nickname'
+
 const Tab = createBottomTabNavigator();
 
 function HomeTabs({ navigation, route }) {
@@ -85,10 +91,15 @@ function App({ navigation, route }) {
     <NavigationContainer>
       <Stack.Navigator headerMode="none" mode="modal">
         <Stack.Screen name="Home" component={HomeTabs} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Login" component={Login} {...navigation} />
+        <Stack.Screen name="Register" component={Register} {...navigation} />
         <Stack.Screen name="Defail" component={Defail} {...route} />
         <Stack.Screen name="SearchList" component={SearchList} {...navigation} />
+        <Stack.Screen name="Information" component={Information} {...navigation} />
+        <Stack.Screen name="Avatar" component={Avatar} {...navigation} />
+        <Stack.Screen name="Age" component={Age} {...navigation} />
+        <Stack.Screen name="Phone" component={Phone} {...navigation} />
+        <Stack.Screen name="Nickname" component={Nickname} {...navigation} />
       </Stack.Navigator>
     </NavigationContainer>
   );

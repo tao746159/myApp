@@ -13,7 +13,6 @@ export default class SearchBarDemo extends React.Component {
 
   }
   render() {
-    console.log(this.props.props)
     return (
       <TouchableHighlight underlayColor="" onPress={() => { this.props.props.navigation.navigate('SearchList') }}>
         <View style={{ marginTop: 10, backgroundColor: '#ffffff', height: 60 }} onPress={() => { this.props.navigator.push(SearchList) }}>

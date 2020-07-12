@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
-
+import axios from 'axios'
 
 const Recommend = (props) => {
   let [list, setList] = useState([])
   const handleGetList = () => {
-    fetch('http://www.leother.cool:3002/api/homelist')
-      .then((response) => response.json())
-      .then((json) => setList(json.list))
+    axios.get('http://www.leother.cool:3002/api/homelist').then(res => {
+      if (res.data.code === 200) {
+        setList(res.data.list)
+      }
+      
+    })
   }
 
   useEffect(() => {

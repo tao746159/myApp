@@ -1,12 +1,33 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {
-  View, Text, StyleSheet, Image, TouchableHighlight, ImageBackground
+  View, Text, StyleSheet, Image, TouchableHighlight, AsyncStorage
 } from 'react-native'
 
 import Iconfonts from 'react-native-vector-icons/Ionicons'
 import { Button } from '@ant-design/react-native'
+import axios from 'axios'
 
-const My = () => {
+class My extends React.Component {
+  constructor() {
+    super(...arguments)
+  }
+  componentDidMount () {
+    AsyncStorage.getItem('username').then(res => {
+      if (res === null) {
+        this.props.navigation.navigate('Login')
+      }
+     
+    })
+  }
+   handleLoginOut = () => {
+     AsyncStorage.removeItem('username')
+     AsyncStorage.removeItem('age')
+     AsyncStorage.removeItem('phone')
+     AsyncStorage.removeItem('created')
+     AsyncStorage.removeItem('nickname')
+     this.props.navigation.navigate('Login')
+  }
+  render () {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -24,7 +45,7 @@ const My = () => {
         </View>
       </View>
       <View style={styles.content}>
-        <TouchableHighlight underlayColor="">
+        <TouchableHighlight underlayColor="" onPress={()=>{this.props.navigation.navigate("Information")}}>
           <View style={styles.list}>
             <View style={{ flexDirection: 'row', }}>
               <Iconfonts name="document-text-outline" size={24} />
@@ -51,11 +72,11 @@ const My = () => {
             <Iconfonts name="chevron-forward-outline" size={24} style={{ marginRight: 20 }} />
           </View>
         </TouchableHighlight>
-        <Button style={{marginTop: 60, marginLeft: 20, marginRight: 20}} type="warning">退出登录</Button>
+        <Button style={{marginTop: 60, marginLeft: 20, marginRight: 20}} type="warning" onPress={this.handleLoginOut}>退出登录</Button>
       </View>
-      
     </View>
-  )
+    )
+     } 
 }
 
 const styles = StyleSheet.create({

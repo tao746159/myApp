@@ -1,13 +1,23 @@
 import React from 'react'
 import {
-  View, Text, StyleSheet, Image, TouchableHighlight
+  View, Text, StyleSheet, Image, TouchableHighlight,AsyncStorage
 } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
 import Iconfonts from 'react-native-vector-icons/Ionicons'
 
-const Project = () => {
-
+class Project extends React.Component {
+  constructor() {
+    super(...arguments)
+  }
+  componentDidMount () {
+    AsyncStorage.getItem('username').then(res => {
+      if (res === null) {
+        this.props.navigation.navigate('Login')
+      }
+    })
+  }
+render() {
   return (
     <View style={styles.content}>
       <View style={styles.topText}>
@@ -33,6 +43,7 @@ const Project = () => {
       </ScrollView>
     </View>
   )
+  }
 }
 
 const styles = StyleSheet.create({

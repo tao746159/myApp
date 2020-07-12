@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import {
-  View, Text, StyleSheet, ListView, Image
+  View, Text, StyleSheet, Image
 } from 'react-native'
 
 
 import SortRight from './components/SortRight'
 import { ScrollView } from 'react-native-gesture-handler'
 
+import axios from 'axios'
 const sortList = [
   {
     text: '热门',
@@ -36,13 +37,21 @@ class Sort extends React.Component {
     this.state = {
       list: [],
       arrList: [],
-      active: 'remen'
+      active: 'remen',
+      show: false
     }
   }
-  componentDidMount() {
-    fetch('http://www.leother.cool:3002/api/homelist')
-      .then((response) => response.json())
-      .then((json) => this.setState({ list: json.list, arrList: json.list }))
+  componentDidMount () {
+    this.setState({ show: true }, () => {
+      axios.get('http://www.leother.cool:3002/api/homelist')
+      .then((res) => {
+        if (res.data.code === 200) {
+          this.setState({show: false})
+          this.setState({ list: res.data.list, arrList: res.data.list })
+        }
+      })
+    })
+    
   }
 
   handleTabActive = (name) => {
@@ -65,7 +74,6 @@ class Sort extends React.Component {
       <View style={styles.top}>
         <View style={styles.left}>
           <View>
-
             {
               sortList.map((item, index) => {
                 return <View key={index} style={styles.item}>
@@ -74,10 +82,11 @@ class Sort extends React.Component {
               })
             }
           </View>
+          
         </View>
         <ScrollView style={styles.right}>
           <Image source={{ uri: 'http://i2.tiimg.com/722699/ababe0ac9cbe426b.jpg' }} style={{ width: '100%', height: 100 }} />
-          <SortRight list={this.state.list} props={this.props}></SortRight>
+          <SortRight list={this.state.list} props={this.props} show={this.state.show}></SortRight>
         </ScrollView>
       </View>
     )
